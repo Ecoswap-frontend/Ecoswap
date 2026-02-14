@@ -1,0 +1,5 @@
+.container{
+   
+    width: var(--page-width);
+    height: var(--page-height);
+}

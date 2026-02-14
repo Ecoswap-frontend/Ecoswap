@@ -1,0 +1,15 @@
+:root{
+
+    /* font size */
+
+    font-size: 10px;
+
+    /* colors */
+    --primary: #F0EEEE;
+    --secondary: #0CB981;
+    --backgroundColor: #0C805D;
+    
+    --page-width: 151.2rem;
+    --page-height: 120.0rem;
+    --page-padding: 8.2rem 9.6rem 8.1rem 9.6rem;
+}
