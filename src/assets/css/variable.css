@@ -1,15 +1,16 @@
-:root{
+:root {
+  /* font size */
 
-    /* font size */
+  font-size: 10px;
 
-    font-size: 10px;
+  /* colors */
+  --primary: #f0eeee;
+  --secondary: #0cb981;
+  --backgroundColor: #0c805d;
 
-    /* colors */
-    --primary: #F0EEEE;
-    --secondary: #0CB981;
-    --backgroundColor: #0C805D;
-    
-    --page-width: 151.2rem;
-    --page-height: 120.0rem;
-    --page-padding: 8.2rem 9.6rem 8.1rem 9.6rem;
+  --page-width: 151.2rem;
+  --page-height: 120rem;
+  --card-width: 132rem;
+  --card-height: 103.7rem;
+  --page-padding: 8.2rem 9.6rem 8.1rem 9.6rem;
 }

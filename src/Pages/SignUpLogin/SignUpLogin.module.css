@@ -1,5 +1,525 @@
-.container{
-   
-    width: var(--page-width);
-    height: var(--page-height);
+/* .container {
+  width: var(--page-width);
+  height: var(--page-height);
+  padding: var(--page-padding);
+} */
+
+.container {
+  width: 100%;
+  max-width: var(--page-width);
+  margin: 0 auto;
+  height: var(--page-height);
+  min-height: 100vh;
+  padding: var(--page-padding);
 }
+
+.container .cardLogin {
+  width: 100%;
+  max-width: 58.3rem;
+  min-height: 100vh;
+  height: 88.1rem;
+  display: flex;
+  color: white;
+}
+
+.container .card {
+  width: 100%;
+  max-width: var(--card-width);
+  height: var(--card-height);
+  min-height: 100vh;
+  display: flex;
+  color: white;
+}
+
+.container .card__carbon {
+  width: 58.3rem;
+  height: 100%;
+  background-color: var(--backgroundColor);
+  padding: 1.8rem 3.3rem 4.9rem 3.2rem;
+  background-image: url("../../assets/images/tree.svg");
+  background-repeat: no-repeat;
+  background-position: right 87%;
+  background-size: contain;
+  background-size: 32rem;
+  border-radius: 2rem 0rem 0rem 2rem;
+}
+
+.container .card__carbonLogin {
+  width: 58.3rem;
+  height: 88.1rem;
+  background-color: var(--backgroundColor);
+  padding: 1.8rem 3.8rem 5.7rem 3.2rem;
+  background-image: url("../../assets/images/tree.svg");
+  background-repeat: no-repeat;
+  background-position: right 87%;
+  background-size: contain;
+  background-size: 32rem;
+  border-radius: 0rem 2rem 2rem 0;
+}
+
+.container .card__logoimg1 {
+  width: 7.3rem;
+  height: 7.4rem;
+}
+
+.container header {
+  width: 51.3rem;
+  height: 7.4rem;
+  border: 0px solid red;
+  margin-bottom: 8.6rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.container header h2 {
+  font-size: 1.4rem;
+}
+
+.container .card__value h1 {
+  width: 51.8rem;
+  height: 4.9rem;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.container .card__value p {
+  width: 51.8rem;
+  height: 15.4rem;
+  font-size: 1.4rem;
+  line-height: 2.2rem;
+  text-align: justify;
+}
+
+.container .card__feedback {
+  margin-top: 18.4rem;
+  margin-bottom: 10.5rem;
+  width: 55rem;
+  height: 23.7rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 2.8rem 1rem 2.6rem 3.5rem;
+  overflow: hidden;
+  border-radius: 2.5rem;
+}
+
+.container .card__feedback .feedback__header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.container .card__feedback .feedback__header .feedback__img {
+  width: 4.7rem;
+  height: 4.7rem;
+  border: 0px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.container .card__feedback .feedback__header .feedback__detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.container .card__feedback .feedback__header .feedback__detail h1 {
+  font-size: 1.4rem;
+}
+
+.container .card__feedback .feedback__body {
+  margin-top: 0.9rem;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  padding-right: 1rem;
+  width: 59.3rem;
+  height: 12rem;
+  border: 0p solid red;
+}
+
+.container .card__trustees {
+  width: 45.2rem;
+  height: 5.9rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  border: 0px solid red;
+  font-size: 1.4rem;
+}
+
+.container .trustees__images {
+  width: 13.8rem;
+  height: 5.9rem;
+  border: 0px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .trustees__imagg {
+  width: 5.6rem;
+  height: 5.9rem;
+  margin-left: -1.1rem;
+}
+
+.container .card__trustees p {
+  width: 30.1rem;
+  height: 5.9rem;
+  display: flex;
+  align-items: center;
+}
+
+.container .cardLeft {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.container .cardRight {
+  display: flex;
+  flex-direction: row;
+}
+
+/* form styling */
+
+.container .card__form {
+  width: 73.7rem;
+  /* height: 103.7rem; */
+  border: 1px solid rgb(139, 137, 137);
+  padding: 1.8rem 0 0 6.3rem;
+  /* font-size: 1.4rem; */
+  color: black;
+}
+
+.container .card__formLogin {
+  width: 58.3rem;
+  height: 88.1rem;
+  border: 1px solid rgb(112, 110, 110);
+  padding: 1.8rem 3.1rem 4.1rem 3rem;
+  /* font-size: 1.4rem; */
+  color: black;
+}
+
+.container .form__logo {
+  width: 23.1rem;
+  height: 6.4rem;
+  border: 0px solid red;
+  font-size: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+.container .form__logo .form__icon {
+  width: 6.4rem;
+  height: 6.4rem;
+}
+
+.container .form__logo .form__Appname {
+  width: 15rem;
+  height: 5rem;
+}
+
+.container .form__account {
+  width: 53.1rem;
+  height: 19.9rem;
+}
+
+.container .form__account .form__community {
+  width: 50.4rem;
+  height: 9rem;
+}
+
+.container .card__formLogin .form__account .form__community h1{
+  width: 50.4rem;
+  height: 4rem;
+  margin-top: 0.4rem;
+  font-weight: bold;
+  font-size: 2.4rem;
+  border: 0px solid red;
+  display: flex;
+  align-items: center;
+}
+
+.container .card__form .form__account .form__community h1{
+  width: 50.4rem;
+  height: 4rem;
+  margin-top: 0.4rem;
+  font-weight: bold;
+  font-size: 2.4rem;
+  border: 0px solid red;
+  display: flex;
+  align-items: center;
+}
+
+.container .form__account .form__community p {
+  width: 50.4rem;
+  height: 3.3rem;
+  font-size: 1.4rem;
+  border: 0px solid red;
+  display: flex;
+  align-items: center;
+}
+
+.container .form__account .form__button {
+  width: 53.1rem;
+  height: 7.7rem;
+  border: 0px solid black;
+  padding: 1.2rem 6.35rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #f0eeee;
+  border: none;
+}
+
+.container .form__account .form__button .active__btn {
+  /* width: 50%; */
+  background-color: white;
+
+  box-shadow: 0 0 0.1rem;
+  padding: 0.4rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.container .form__account .form__button button {
+  width: 19.3rem;
+  height: 5.3rem;
+  border: 0px solid black;
+ 
+}
+
+.container .form__parent {
+  width: 53.1rem;
+  height: 57.1rem;
+  border: 0px solid black;
+}
+
+.container .form__parentLogin {
+  width: 52.2rem;
+  height: 38.9rem;
+  border: 0px solid black;
+}
+
+.container .form__child {
+  width: 53.1rem;
+  height: 10.6rem;
+  margin-bottom: 3.3rem;
+  display: flex;
+  flex-direction: column;
+  border: 0px solid red;
+}
+
+.container .form__child label{
+  width: 11.3rem;
+  height: 3.3rem;
+  font-size: 1.8rem;
+  /* margin-bottom: 0.8rem; */
+}
+.container .form__password label {
+  border: 0px solid red;
+  display: block;
+  width: 11.3rem;
+  height: 3.3rem;
+}
+
+.container .form__child input {
+  width: 53.1rem;
+  height: 6.5rem;
+  padding: 1.6rem 3.2rem;
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.container .form__child .form__error{
+  color: red;
+  font-size: 1.5rem;
+  margin: 1.0rem 0;
+}
+
+.container .form__child input[type="password"] {
+  width: 53.1rem;
+  height: 6.5rem;
+  padding: 1.6rem 3.2rem;
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+}
+
+
+.container .form__child input::placeholder {
+  width: 45.9rem;
+  height: 3.3rem;
+  border: 0px solid lawngreen;
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.container .form__child input[type="checkbox"] {
+  width: 2.4rem;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  accent-color: white;
+  border: 2px solid black;
+}
+
+input[type="checkbox"]:checked {
+  border: 6px solid black;
+}
+
+.container .form__check {
+  display: flex;
+  align-items: center;
+  border: 0px solid red;
+  margin-top: 0.8rem;
+  width: 53.1rem;
+  height: 2.4rem;
+  gap: 0.1rem;
+  justify-content: space-between;
+}
+
+.container .form__check .checkbox {
+  border: 0px solid red;
+  display: flex;
+  align-items: center;
+}
+
+.container .form__check .forgotPass {
+  width: 12.9rem;
+  height: 2.2rem;
+  color: #2ac291;
+  border: 0px solid black;
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.container .form__check label {
+  width: 10.5rem;
+  height: 2.2rem;
+  border: 0px solid green;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+}
+
+.container .form__submit {
+  width: 53.1rem;
+  height: 6.5rem;
+  color: white;
+  padding: 3.3rem 0;
+  border: none;
+  background-color: var(--secondary);
+   display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+}
+
+.container .form__agreement {
+  width: 34.1rem;
+  height: 2.2rem;
+  border: 0px solid green;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  margin: 3.3rem 0 4.1rem 0;
+}
+
+.container .form__agreement input[type="checkbox"] {
+  width: 2.4rem;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  accent-color: white;
+  border: 2px solid black;
+}
+
+.container .form__alternateSign {
+  width: 53rem;
+  height: 9.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container .form__alternateSign p {
+  width: 10.7rem;
+  height: 2.2rem;
+  text-align: center;
+}
+
+.container .form__alternateSign .alternateSign__button {
+  width: 53rem;
+  height: 4.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+  margin-top: 3.1rem;
+  margin-bottom: 0rem;
+}
+
+.container .form__alternateSign .alternateSign__button button {
+  width: 25.4rem;
+  height: 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.8rem;
+  border: none;
+}
+
+.container .form__alternateSign .alternateSign__logo {
+  width: 3.3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+}
+
+.container .form__alternateSign .alternateSign__desc {
+  width: 7.8rem;
+  height: 2.9rem;
+  display: flex;
+  align-items: center;
+}
+
+
+
+@media (max-width: 1024px) {
+
+  .container {
+  
+  width: 73.7rem;
+  
+  height: 103.7rem;
+ 
+  padding: var(--page-padding);
+}
+
+.container .card__carbon,
+  .container .card__carbonLogin{
+    border: 2px solid red;
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container .cardLeft, .container .cardRight {
+  display: flex;
+  justify-content: center;
+}
+
+  
+}
+
