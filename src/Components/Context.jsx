@@ -1,14 +1,22 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 export const userContext = createContext();
 
 const Context = ({ children }) => {
- let name = "Ayo"
+ const [page, setPage] = useState("Login");
+
+ const handleSignUpToggle = () => {
+   setPage("Sign Up");
+ };
+
+ const handleLoginToggle = () => {
+   setPage("Login");
+ };
 
  
  
   return (
-    <userContext.Provider value={{name}}>
+    <userContext.Provider value={{page, handleLoginToggle,handleSignUpToggle}}>
       {children}
     </userContext.Provider>
   );
