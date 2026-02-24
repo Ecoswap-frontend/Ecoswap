@@ -1,0 +1,23 @@
+{
+  "name": "ecoswap---circular-economy-marketplace",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "echo 'No linting configured'"
+  },
+  "dependencies": {
+    "framer-motion": "^12.34.3",
+    "lucide-react": "latest",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "vite": "^6.2.0",
+    "vite-plugin-svgr": "^4.5.0"
+  }
+}
