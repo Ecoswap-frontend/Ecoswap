@@ -10,6 +10,10 @@ import Orders from "./Orders.jsx";
 import Messages from "./Messages.jsx";
 import Notifications from "./Notifications.jsx";
 import Settings from "./Settings.jsx"
+import React, { useState } from 'react';
+import Landing from './pages/Landing';
+import './Theme/global.css'
+
 
 const App = () => {
   return (
@@ -39,3 +43,4 @@ const App = () => {
 };
 
 export default App;
+
