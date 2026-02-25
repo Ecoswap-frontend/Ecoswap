@@ -12,35 +12,33 @@ import pic3 from "../../assets/images/guy3.svg";
 import image1 from "../../assets/images/googleImage.svg";
 import image2 from "../../assets/images/microsoftImage.svg";
 import { useForm } from "react-hook-form";
-import axios from "axios"
+import axios from "axios";
 import { Link, useNavigate } from "react-router";
 
 const SignUpLogin = () => {
   const { page, handleLoginToggle, handleSignUpToggle } =
     useContext(userContext);
 
-    const navigate = useNavigate();
-     const handleForgotPassword = () => {
-       navigate("/forgotPassword"); // ✅ navigate
-     };
+  const navigate = useNavigate();
+  const handleForgotPassword = () => {
+    navigate("/forgotPassword"); // ✅ navigate
+  };
 
-     const agents = [
-       {
-         img: <CiUser color="black" size={20} />,
-         name: "Sarah Jekins",
-         status: "Verified Member",
-         body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla, temporibus quia necessitatibus hic odio dolorum fuga porro natus deserunt, quisquam, libero est! Voluptas itaque repudiandae rerum nam perferendis consequatur dignissimos. Lorem ipsum dolor, sit amet ",
-       },
-     ];
+  const agents = [
+    {
+      img: <CiUser color="black" size={20} />,
+      name: "Sarah Jekins",
+      status: "Verified Member",
+      body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla, temporibus quia necessitatibus hic odio dolorum fuga porro natus deserunt, quisquam, libero est! Voluptas itaque repudiandae rerum nam perferendis consequatur dignissimos. Lorem ipsum dolor, sit amet ",
+    },
+  ];
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm();
-
- 
 
   const submitCall = async (data) => {
     console.log("FORM SUBMITTED");
@@ -51,36 +49,33 @@ const SignUpLogin = () => {
         "http://localhost:8000/api/auth/register",
         data,
       );
-      
-      if(response.status == 201){
-        alert("Registration Successfull !!!")
+
+      if (response.status == 201) {
+        alert("Registration Successfull !!!");
       }
     } catch (error) {
       console.log(error);
-      
     }
   };
 
+  const loginCall = async (data) => {
+    console.log("user logged in successfully");
+    console.log(data);
 
-   const loginCall = async (data) => {
-     console.log("user logged in successfully");
-     console.log(data);
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/auth/login",
+        data,
+      );
 
-     try {
-       const response = await axios.post(
-         "http://localhost:8000/api/auth/login",
-         data,
-       );
+      if (response.status == 201) {
+        alert("Login Successful!!!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-       if (response.status == 201) {
-         alert("Login Successful!!!");
-       }
-     } catch (error) {
-       console.log(error);
-     }
-   };
-
- 
   return (
     <>
       <div className={styles.container}>
@@ -290,8 +285,14 @@ const SignUpLogin = () => {
 
                   <div className={styles.form__check}>
                     <div className={styles.checkbox}>
-                      <input type="checkbox" id="remember" defaultChecked />
-                      <label htmlFor="remember">Remember me</label>
+                      <label className={styles.checkboxWrapper}>
+                        <input
+                          type="checkbox"
+                          className={styles.customCheckbox}
+                          defaultChecked
+                        />
+                        Remember Me
+                      </label>
                     </div>
                     {page === "Login" ? (
                       <div
@@ -316,8 +317,12 @@ const SignUpLogin = () => {
                   </button>
                 )}
                 <div className={styles.form__agreement}>
-                  <input type="checkbox" defaultChecked />
-                  <label>
+                  <label className={styles.checkboxWrapper}>
+                    <input
+                      type="checkbox"
+                      className={styles.customCheckbox}
+                      defaultChecked
+                    />
                     I agree To the Terms Services and Privacy Policy
                   </label>
                 </div>

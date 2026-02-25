@@ -1,0 +1,325 @@
+.wizard {
+  display: grid;
+  gap: 14px;
+  border: 0px solid red;
+}
+
+.dashboardd {
+  background-color: white;
+  height: 100vh;
+}
+
+header .dashHeader {
+  background-color: none;
+  padding: 14px 20px;
+  /* background: var(--surface); */
+  border-bottom: 1px solid var(--border);
+}
+.dashHeader h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  padding-bottom: 1.2rem;
+}
+
+.dashHeader p {
+  font-size: 1.6rem;
+  padding: 0.5rem 0;
+}
+.addbtn {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.addbtn button {
+  background-color: #0cb981;
+  border-radius: 0.8rem;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 1rem;
+}
+
+.rightRendered .builtTips {
+  background-color: #dcfcef;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.8rem;
+  border-radius: 1rem;
+}
+
+.stepHeader {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  align-items: end;
+}
+
+.stepHeader .stepItem button {
+  border: none;
+  background-color: none;
+}
+
+.stepItem {
+  text-align: center;
+  border: 0px solid red;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: grid;
+  place-items: center;
+  margin: 0 auto;
+  color: var(--muted);
+  background: #fff;
+}
+
+.label {
+  font-size: 12px;
+  margin-top: 6px;
+  color: var(--muted);
+}
+
+.active .icon {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+.active .label {
+  color: var(--primary);
+  font-weight: 600;
+}
+.done .icon {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.card {
+  /* background: #fff; */
+  border: 0px solid red;
+  border-radius: 12px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.estimator {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.stepper .logo:active {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 25%;
+  background-color: rgb(167, 236, 167);
+}
+.impact .estimator h1 {
+  margin: 0;
+  border: 0px solid red;
+  font-size: 1rem;
+}
+
+.impact .estimator .plusListing {
+  margin: 0;
+}
+
+.estimator .iconn {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: rgb(178, 245, 178);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.impact {
+  border: 1px solid black;
+  border-radius: 1rem;
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 2rem;
+  font-size: 1.8rem;
+}
+
+.impact .sustain {
+  color: green;
+}
+
+.estimator p {
+  color: green;
+}
+
+.listParent {
+  display: flex;
+  border: 0px solid red;
+  padding: 1.5rem;
+  padding-left: 0;
+}
+
+.ListingLeft {
+  width: 100%;
+  font-size: 1.6rem;
+  border: 0px solid yellow;
+  display: flex;
+}
+
+.rendered_content,
+.ListingRight {
+  width: 100%;
+}
+
+.listLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.listLabel input {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid black;
+  font-size: 1.6rem;
+}
+
+.infobtn {
+  margin-top: 5rem;
+  width: 100%;
+  background-color: #0cb981;
+  color: white;
+  padding: 1rem;
+  font-size: 1.4rem;
+  border: none;
+  outline: none;
+  margin-top: 3rem;
+}
+
+/* list stepper */
+.containerr {
+  padding: 2rem;
+}
+
+.containerr .stepper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.stepper .step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.containerr .listcontain {
+  border: 0px solid red;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+
+.containerr .listcontain .list {
+  opacity: 0.5;
+}
+
+.containerr .step {
+  padding: 10px 20px;
+  border-radius: 20px;
+
+  font-size: 14px;
+}
+
+.containerr .step span{
+  width: 4.0rem;
+  height: 4.00rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(169, 168, 168);
+  
+}
+
+
+
+ .step span.active{
+background-color: rgb(135, 229, 135);
+
+}
+
+.containerr .active {
+  border: none;
+  color: white;
+}
+
+.containerr .content {
+  min-height: 200px;
+  margin-bottom: 30px;
+}
+
+.containerr .buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dynamicPluspage {
+  display: flex;
+  flex-direction: column;
+  border: 0px solid purple;
+  width: 100%;
+  padding-right: 2rem;
+}
+
+.dynamicPluspage h1 {
+  border: 0px solid red;
+  margin: 0;
+}
+
+.rendered_content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  width: 100%;
+}
+
+.listParent {
+  border: 0px solid green;
+  margin-top: none;
+}
+
+.ListingLeft p {
+  margin-top: 2rem;
+}
+
+/* detail */
+
+.wasteForm__form label {
+  font-size: 1.8rem;
+}
+
+.wasteForm__form textarea::placeholder {
+  font-size: 2rem;
+}
+
+/* logistics */
+
+.cardLog .inputParent {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.cardLog .inputParent input {
+  font-size: 1.6rem;
+  padding: 1.2rem;
+  border-radius: 1rem;
+}
