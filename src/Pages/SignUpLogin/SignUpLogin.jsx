@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import { userContext } from "../../Components/Context";
-import styles from "./SignUpLogin.module.css";
+import React, { useContext, useState } from "react";
+import { userContext } from "../../context/Context";
+import styles from "../SignUpLogin/SignUpLogin.module.css";
 
 import icon from "../../assets/images/Icon.svg";
 import Appname from "../../assets/images/Name.svg";
@@ -11,76 +11,66 @@ import pic2 from "../../assets/images/guy2.svg";
 import pic3 from "../../assets/images/guy3.svg";
 import image1 from "../../assets/images/googleImage.svg";
 import image2 from "../../assets/images/microsoftImage.svg";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useForm } from "react-hook-form";
-import axios from "axios"
-import { Link, useNavigate } from "react-router";
+import axios from "axios";
+import { Link, useNavigate, useLocation } from "react-router";
 
 const SignUpLogin = () => {
-  const { page, handleLoginToggle, handleSignUpToggle } =
+  const { page, handleLoginToggle, handleSignUpToggle, registerUser, loginUser, isLoading } =
     useContext(userContext);
 
-    const navigate = useNavigate();
-     const handleForgotPassword = () => {
-       navigate("/forgotPassword"); // ✅ navigate
-     };
+  const navigate = useNavigate();
+  const location = useLocation();
 
-     const agents = [
-       {
-         img: <CiUser color="black" size={20} />,
-         name: "Sarah Jekins",
-         status: "Verified Member",
-         body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla, temporibus quia necessitatibus hic odio dolorum fuga porro natus deserunt, quisquam, libero est! Voluptas itaque repudiandae rerum nam perferendis consequatur dignissimos. Lorem ipsum dolor, sit amet ",
-       },
-     ];
+  const handleForgotPassword = () => {
+    navigate("/forgotPassword"); // 
+  };
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  React.useEffect(() => {
+    if (location.pathname === '/signin') {
+      handleLoginToggle();
+    } else if (location.pathname === '/signup') {
+      handleSignUpToggle();
+      if (location.state?.role) {
+        // Fallback or explicit routing logic if needed
+      }
+    }
+  }, [location.pathname, handleLoginToggle, handleSignUpToggle, location.state]);
+
+  const agents = [
+    {
+      img: <CiUser color="black" size={20} />,
+      name: "Sarah Jekins",
+      status: "Verified Member",
+      body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla, temporibus quia necessitatibus hic odio dolorum fuga porro natus deserunt, quisquam, libero est! Voluptas itaque repudiandae rerum nam perferendis consequatur dignissimos. Lorem ipsum dolor, sit amet ",
+    },
+  ];
 
   const {
     register,
     handleSubmit,
+    watch,
+    reset,
     formState: { errors },
-    reset
-  } = useForm();
+  } = useForm({
+    defaultValues: { role: "Buyer", authMethod: "" },
+  });
 
- 
+  const selectedRole = watch("role");
+  const authMethod = watch("authMethod");
+  const selectedFile = watch("businessDoc");
 
   const submitCall = async (data) => {
-    console.log("FORM SUBMITTED");
-    console.log(data);
-
-    try {
-      const response = await axios.post(
-        "http://localhost:8000/api/auth/register",
-        data,
-      );
-      
-      if(response.status == 201){
-        alert("Registration Successfull !!!")
-      }
-    } catch (error) {
-      console.log(error);
-      
-    }
+    await registerUser(data, reset, navigate);
   };
 
+  const loginCall = async (data) => {
+    await loginUser(data, navigate);
+  };
 
-   const loginCall = async (data) => {
-     console.log("user logged in successfully");
-     console.log(data);
-
-     try {
-       const response = await axios.post(
-         "http://localhost:8000/api/auth/login",
-         data,
-       );
-
-       if (response.status == 201) {
-         alert("Login Successful!!!");
-       }
-     } catch (error) {
-       console.log(error);
-     }
-   };
-
- 
   return (
     <>
       <div className={styles.container}>
@@ -179,7 +169,7 @@ const SignUpLogin = () => {
                     page === "Login" ? styles.active__btn : styles.inactive__btn
                   }
                   onClick={() => {
-                    handleLoginToggle();
+                    navigate("/signin");
                     reset();
                   }}
                 >
@@ -193,7 +183,7 @@ const SignUpLogin = () => {
                       : styles.inactive__btn
                   }
                   onClick={() => {
-                    handleSignUpToggle();
+                    navigate("/signup");
                     reset();
                   }}
                 >
@@ -219,26 +209,111 @@ const SignUpLogin = () => {
                 {page === "Login" ? (
                   <></>
                 ) : (
-                  <div className={styles.form__child}>
-                    <label htmlFor="fullname">Full Name</label>
-                    <input
-                      type="text"
-                      id="fullname"
-                      name="fullname"
-                      {...register("fullname", {
-                        required: "Full name is required",
-                        validate: (value) =>
-                          value.trim().split(" ").length >= 2 ||
-                          "Enter first and last name",
-                      })}
-                      placeholder="Sarah Jenkins"
-                    />
-                    {errors.fullname && (
-                      <div className={styles.form__error}>
-                        {errors.fullname.message}
+                  <>
+                    <div className={styles.form__roleSelection}>
+                      <div className={styles.roleOptions}>
+                        <label className={styles.radioLabel}>
+                          <input
+                            type="radio"
+                            value="Buyer"
+                            {...register("role")}
+                            className={styles.radioInput}
+                          />
+                          Buyer
+                        </label>
+                        <label className={styles.radioLabel}>
+                          <input
+                            type="radio"
+                            value="Seller"
+                            {...register("role")}
+                            className={styles.radioInput}
+                          />
+                          Seller
+                        </label>
+                      </div>
+                    </div>
+
+                    <div className={styles.form__child}>
+                      <label htmlFor="fullname">Full Name</label>
+                      <input
+                        type="text"
+                        id="fullname"
+                        name="fullname"
+                        {...register("fullname", {
+                          required: "Full name is required",
+                          validate: (value) =>
+                            value.trim().split(" ").length >= 2 ||
+                            "Enter first and last name",
+                        })}
+                        placeholder="Sarah Jenkins"
+                      />
+                      {errors.fullname && (
+                        <div className={styles.form__error}>
+                          {errors.fullname.message}
+                        </div>
+                      )}
+                    </div>
+
+                    {selectedRole === "Seller" && (
+                      <div className={styles.form__child}>
+                        <label htmlFor="sellerAuthMethod">Verification Method</label>
+                        <select 
+                          id="sellerAuthMethod"
+                          className={styles.passwordInput}
+                          {...register("authMethod")}
+                        >
+                          <option value="" disabled>Select Verification Method</option>
+                          <option value="upload">Business Document</option>
+                          <option value="nin">National ID (NIN)</option>
+                        </select>
+
+                        {authMethod === "upload" && (
+                          <div className={styles.fileUploadContainer} style={{marginTop: '15px'}}>
+                            <div className={styles.fileInputWrapper}>
+                              <input
+                                type="file"
+                                id="businessDoc"
+                                accept=".pdf,.doc,.docx,.jpg,.png"
+                                {...register("businessDoc", {
+                                  required: "Business Document is required",
+                                })}
+                                className={styles.fileInput}
+                              />
+                              <div className={styles.fileCover}>
+                                {selectedFile && selectedFile.length > 0 
+                                  ? selectedFile[0].name 
+                                  : "Click to choose a file or drag it here"}
+                              </div>
+                            </div>
+                            {errors.businessDoc && (
+                              <div className={styles.form__error}>
+                                {errors.businessDoc.message}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                        
+                        {authMethod === "nin" && (
+                          <div className={styles.fileUploadContainer} style={{marginTop: '15px'}}>
+                            <label htmlFor="idNumber">National ID Number (NIN)</label>
+                            <input
+                              type="text"
+                              placeholder="National ID Number"
+                              {...register("idNumber", {
+                                required: "NIN is required"
+                              })}
+                              className={styles.idInput}
+                            />
+                            {errors.idNumber && (
+                              <div className={styles.form__error}>
+                                {errors.idNumber.message}
+                              </div>
+                            )}
+                          </div>
+                        )}
                       </div>
                     )}
-                  </div>
+                  </>
                 )}
 
                 <div className={styles.form__child}>
@@ -266,21 +341,30 @@ const SignUpLogin = () => {
                 <div className={styles.form__child}>
                   <div className={styles.form__password}>
                     <label htmlFor="password">Password</label>
-                    <input
-                      type="password"
-                      id="password"
-                      name="password"
-                      {...register("password", {
-                        required: "Password is required",
-                        pattern: {
-                          value:
-                            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/,
-                          message:
-                            "Min 8 chars, uppercase, lowercase, number & special char",
-                        },
-                      })}
-                      placeholder="***************"
-                    />
+                    <div className={styles.passwordInputContainer}>
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        id="password"
+                        name="password"
+                        {...register("password", {
+                          required: "Password is required",
+                          pattern: {
+                            value:
+                              /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/,
+                            message:
+                              "Min 8 chars, uppercase, lowercase, number & special char",
+                          },
+                        })}
+                        placeholder="***************"
+                        className={styles.passwordInput}
+                      />
+                      <span
+                        className={styles.passwordToggle}
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
+                      </span>
+                    </div>
                     {errors.password && (
                       <div className={styles.form__error}>
                         {errors.password.message}
@@ -290,7 +374,7 @@ const SignUpLogin = () => {
 
                   <div className={styles.form__check}>
                     <div className={styles.checkbox}>
-                      <input type="checkbox" id="remember" defaultChecked />
+                      <input type="checkbox" id="remember" defaultChecked={true} />
                       <label htmlFor="remember">Remember me</label>
                     </div>
                     {page === "Login" ? (
@@ -307,25 +391,27 @@ const SignUpLogin = () => {
                 </div>
 
                 {page == "Login" ? (
-                  <button type="submit" className={styles.form__submit}>
-                    Proceed
+                  <button type="submit" className={styles.form__submit} disabled={isLoading}>
+                    {isLoading ? "Proceeding..." : "Proceed"}
                   </button>
                 ) : (
-                  <button type="submit" className={styles.form__submit}>
-                    Sign Up
-                  </button>
+                  <>
+                    <button type="submit" className={styles.form__submit} disabled={isLoading}>
+                      {isLoading ? "Signing Up..." : "Sign Up"}
+                    </button>
+                    <div className={styles.form__agreement}>
+                      <input type="checkbox" id="agreement" defaultChecked={true} />
+                      <label htmlFor="agreement">
+                        I agree to the Terms Services and Privacy Policy
+                      </label>
+                    </div>
+                  </>
                 )}
-                <div className={styles.form__agreement}>
-                  <input type="checkbox" defaultChecked />
-                  <label>
-                    I agree To the Terms Services and Privacy Policy
-                  </label>
-                </div>
 
                 <div className={styles.form__alternateSign}>
                   <p>Or signup with</p>
                   <div className={styles.alternateSign__button}>
-                    <button>
+                    <button type="button" disabled={isLoading}>
                       <img
                         src={image1}
                         alt="googleLogo"
@@ -333,7 +419,7 @@ const SignUpLogin = () => {
                       />{" "}
                       <span className={styles.alternateSign__desc}>Google</span>
                     </button>
-                    <button>
+                    <button type="button" disabled={isLoading}>
                       <img
                         src={image2}
                         alt="microsoftLogo"
